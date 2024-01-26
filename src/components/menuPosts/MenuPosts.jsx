@@ -11,7 +11,7 @@ const MenuPosts = () => {
             <div className={styles.items}>
                 <Link href="/" className={styles.item}>
                     <div className={styles.imageContainer}>
-                        <Image src="/p1.jpeg" alt="" fill className={styles.image}/>
+                        <Image src="/p1.png" alt="" fill className={styles.image}/>
                     </div>
                     <div className={styles.textContainer}>
                         <span className={`${styles.category} ${styles.travel}`}>
@@ -27,7 +27,7 @@ const MenuPosts = () => {
 
                 <Link href="/" className={styles.item}>
                     <div className={styles.imageContainer}>
-                        <Image src="/p1.jpeg" alt="" fill className={styles.image}/>
+                        <Image src="/p1.png" alt="" fill className={styles.image}/>
                     </div>
                     <div className={styles.textContainer}>
                         <span className={`${styles.category} ${styles.fashion}`}>
@@ -43,7 +43,7 @@ const MenuPosts = () => {
 
                 <Link href="/" className={styles.item}>
                     <div className={styles.imageContainer}>
-                        <Image src="/p1.jpeg" alt="" fill className={styles.image}/>
+                        <Image src="/p1.png" alt="" fill className={styles.image}/>
                     </div>
                     <div className={styles.textContainer}>
                         <span className={`${styles.category} ${styles.food}`}>
@@ -59,7 +59,7 @@ const MenuPosts = () => {
 
                 <Link href="/" className={styles.item}>
                     <div className={styles.imageContainer}>
-                        <Image src="/p1.jpeg" alt="" fill className={styles.image}/>
+                        <Image src="/p1.png" alt="" fill className={styles.image}/>
                     </div>
                     <div className={styles.textContainer}>
                         <span className={`${styles.category} ${styles.culture}`}>

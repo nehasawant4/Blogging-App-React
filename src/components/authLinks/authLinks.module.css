@@ -20,7 +20,7 @@
 .responsiveMenu{
     position: absolute;
     top: 100px;
-    left: 0px;
+    left: 0;
     background-color: var(--bg);
     height: calc(100vh - 100px);
     width: 100%;
@@ -33,11 +33,11 @@
 }
 
 @media screen and (max-width: 640px) {
-    .burger{
+    .burger {
         display: flex;
     }
-}
 
-.link{
-    display: none;
+    .link {
+        display: none;
+    }
 }

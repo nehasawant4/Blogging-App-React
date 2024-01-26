@@ -1,13 +1,12 @@
 "use client";
 
-import React, {useContext} from "react";
+import {useContext} from "react";
 import styles from "./themeToggle.module.css"
 import Image from "next/image";
 import {ThemeContext} from "@/context/ThemeContext";
 
 const ThemeToggle = () => {
     const {toggle,theme} =useContext(ThemeContext);
-    console.log(theme);
 
     return(
         <div
@@ -15,8 +14,8 @@ const ThemeToggle = () => {
             onClick={toggle}
             style={
                 theme==="dark"
-                    ? {left:1, backgroundColor:"white"}
-                    : {right:1, backgroundColor:"#13022a"}
+                    ? {backgroundColor:"white"}
+                    : {backgroundColor:"#13022a"}
             }
         >
             <Image src={"/moon.png"} alt="" width={14} height={14}/>
