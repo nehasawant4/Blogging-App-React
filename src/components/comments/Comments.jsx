@@ -1,57 +1,72 @@
-import React from "react";
+"use client"
+
+import {useSession} from "next-auth/react";
+import React, {useState} from "react";
 import styles from "./comments.module.css"
 import Link from "next/link";
 import Image from "next/image";
-const Comments = () => {
+import useSWR, {mutate} from "swr";
 
-    const status="authenticated";
+const fetcher =  async (url) => {
+    const res = await fetch(url);
+    const data = await res.json();
 
+    if(!res.ok){
+         const error = new Error(data.message);
+         throw error;
+    }
+
+    return data; 
+}
+const Comments = ({postSlug}) => {
+
+    const {status}=useSession();
+    const {data,mutate,isLoading} = useSWR(`http://localhost:3000/api/comments?postSlug=${postSlug}`, fetcher);
+
+    const [desc,setDesc] = useState("");
+    const handleSubmit = async () => {
+        await fetch("/api/comments",{
+            method:"POST",
+            body:JSON.stringify({desc, postSlug})
+        });
+        mutate();
+    }
     return(
         <div className={styles.container}>
             <h1 className={styles.title}>Comments</h1>
             {status === "authenticated" ? (
                 <div className={styles.write}>
-                    <textarea className={styles.input} placeholder="Write a comment"/>
-                    <button className={styles.button}>Send</button>
+                    <textarea className={styles.input} placeholder="Write a comment" onChange={e=>setDesc(e.target.value)}/>
+                    <button className={styles.button} onClick={handleSubmit}>Send</button>
                 </div>
             ) : (
                 <Link href="/login">Login to comment</Link>
             )}
 
             <div className={styles.comments}>
-                <div className={styles.comment}>
-                    <div className={styles.user}>
-                        <Image className={styles.image} src="/travel.png" alt="" width={50} height={50}/>
-                        <div className={styles.userInfo}>
-                            <span className={styles.username}>Neha Sawant</span>
-                            <span className={styles.date}>12.12.2023</span>
+                {isLoading
+                    ? "loading"
+                    : data?.map((item) =>(
+                        <div className={styles.comment} key={item._id}>
+                            <div className={styles.user}>
+                                {item?.user?.image && <Image
+                                    className={styles.image}
+                                    src={item.user.image}
+                                    alt="" width={50} height={50}
+                                />}
+                                <div className={styles.userInfo}>
+                                    <span className={styles.username}>{item.user.name}</span>
+                                    <span className={styles.date}>{item.createdAt.substring(0,10)}</span>
+                                </div>
+                            </div>
+                            <p className={styles.desc}>
+                                {item.desc}
+                            </p>
                         </div>
-                    </div>
-                    <div>
-                        <p className={styles.desc}>
-                            How you doin'?
-                        </p>
-                    </div>
-                </div>
-
-                <div className={styles.comment}>
-                    <div className={styles.user}>
-                        <Image className={styles.image} src="/culture.png" alt="" width={50} height={50}/>
-                        <div className={styles.userInfo}>
-                            <span className={styles.username}>Vrushabh</span>
-                            <span className={styles.date}>12.21.2023</span>
-                        </div>
-                    </div>
-                    <div>
-                        <p className={styles.desc}>
-                            Happy New Year!
-                        </p>
-                    </div>
-                </div>
-
+                    ))}
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Comments

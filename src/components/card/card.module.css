@@ -7,8 +7,12 @@
 
 .imageContainer {
     flex: 1;
-    height: 350px;
+    height: 400px;
     position: relative;
+}
+
+.image{
+    object-fit: contain;
 }
 
 .textContainer{
@@ -18,15 +22,12 @@
     gap: 30px;
 }
 
-.image{
-    object-fit: cover;
-}
-
 .date{
-    color: gray;
+    color: #696767;
 }
 
 .category{
+    text-transform: uppercase;
     color: crimson;
     font-weight: 500;
 }

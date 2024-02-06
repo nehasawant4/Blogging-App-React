@@ -19,8 +19,15 @@
 
 .imageContainer{
     flex: 1;
-    height: 350px;
+    height: 400px;
     position: relative;
+    overflow: hidden;
+}
+
+.image{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
 }
 
 .user{
