@@ -5,11 +5,11 @@ Developed using React, Next.js, CSS, MongoDB, Prisma ORM, Firebase, etc. Integra
 First, run the development server:
 
 ```bash
-npm run dev
+# npm run dev
 # or
-yarn dev
+# yarn dev
 # or
-pnpm dev
+# pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
